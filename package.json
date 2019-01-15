@@ -1,0 +1,49 @@
+{
+  "name": "gulp-setup",
+  "version": "1.0.0",
+  "description": "Configuration Gulp « clef en main » permettant de démarrer un nouveau projet sans prise de tête.",
+  "author": {
+    "name": "Corinne Schillinger",
+    "email": "corinne@inseo.fr",
+    "url": "https://inseo.fr"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "dev": "gulp",
+    "prod": "gulp --prod",
+    "styleguide": "kss --config 'kss-config.json'",
+    "watch-styleguide": "npm run styleguide && onchange --await-write-finish 1500 'build/css/styles.min.css' -- npm run styleguide",
+    "dev-with-styleguide": "gulp --styleguide",
+    "prod-with-styleguide": "gulp --prod --styleguide && npm run styleguide",
+    "jslint": "eslint --fix 'assets/scripts/**/*.js'",
+    "csslint": "stylelint 'assets/styles/**/*.scss'"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.1.5",
+    "beepbeep": "^1.2.2",
+    "browser-sync": "^2.26.3",
+    "browserslist": "^4.1.1",
+    "css-mqpacker": "^6.0.2",
+    "cssnano": "^4.1.0",
+    "del": "^3.0.0",
+    "eslint": "^5.6.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-util": "^3.0.8",
+    "kss": "^3.0.0-beta.23",
+    "kss-scheibo": "^0.8.0",
+    "onchange": "^5.2.0",
+    "stylelint": "^9.7.1",
+    "stylelint-config-rational-order": "0.0.2",
+    "stylelint-config-sass-guidelines": "^5.3.0",
+    "stylelint-order": "^2.0.0",
+    "stylelint-scss": "^3.5.0"
+  }
+}
