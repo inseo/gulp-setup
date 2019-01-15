@@ -7,6 +7,7 @@
     "email": "corinne@inseo.fr",
     "url": "https://inseo.fr"
   },
+  "license": "No-License (see LICENSE file)",
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp",
