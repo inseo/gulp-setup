@@ -24,9 +24,6 @@ const autoprefixer = config.settings.styles ? require('autoprefixer') : null,
 const concat       = (config.settings.scripts | config.settings.standaloneScripts) ? require('gulp-concat') : null,
       uglify       = (config.settings.scripts | config.settings.standaloneScripts) ? require('gulp-uglify') : null;
 
-// Images
-const imagemin     = config.settings.images ? require('gulp-imagemin') : null;
-
 // SVG
 const svgSprite    = (config.settings.svgIcons | config.settings.svgSprite) ? require('gulp-svg-sprite') : null;
 
@@ -106,8 +103,6 @@ function images(done) {
   if (!config.settings.images) return done();
 
   return gulp.src(config.images.src)
-    .pipe(isProduction ? imagemin() : util.noop())
-    .on('error', swallowError)
     .pipe(gulp.dest(config.images.build))
     .pipe(generateStyleGuide ? gulp.dest(config.images.styleguide) : util.noop())
 }

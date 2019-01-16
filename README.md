@@ -6,7 +6,7 @@ Configuration Gulp permettant d'automatiser les tâches suivantes :
 * ajout des préfixes propriétaire grâce à [autoprefixer](https://www.npmjs.com/package/autoprefixer) ;
 * concaténation des fichiers JavaScript grâce à [gulp-concat](https://www.npmjs.com/package/gulp-concat) ;
 * génération de sprites SVG grâce à [gulp-svg-sprite](https://www.npmjs.com/package/gulp-svg-sprite) ;
-* copie des fichiers statiques ;
+* copie des fichiers statiques (images et polices) ;
 * visualisation du rendu sur un serveur local et rafraichissement automatique des pages lors de la mise à jour des fichiers source grâce à [Browsersync](https://www.browsersync.io/).
 
 ## Configuration
@@ -16,7 +16,7 @@ Il est également possible de désactiver chaque tâche individuellement.
 
 * `settings.styles` active la compilation des fichiers Sass ;
 * `settings.scripts` active la concaténation des fichiers JavaScript ;
-* `settings.standaloneScripts` active la copie des fichiers JavaScript n'ayant pas vocation à être concaténé ;
+* `settings.standaloneScripts` active la copie des fichiers JavaScript n'ayant pas vocation à être concaténés ;
 * `settings.images` active la copie des images ;
 * `settings.svgIcons` active la génération d'un Sprite SVG destiné à être appelé dans le code HTML via un élément `use` ;
 * `settings.svgSprite` active la génération d'un Sprite SVG destiné à être utilisé comme élément d'arrière-plan dans le code CSS ;
@@ -40,8 +40,15 @@ Pour stopper une commande en cours d'exécution, utilisez les touches <kbd>Ctrl<
 
 Le linting des fichiers n'est volontairement pas inclus dans le workflow Gulp pour éviter de ralonger inutilement le temps de traitement. Le plus simple est d'activer le linting lors de l'enregistrement des fichiers dans votre éditeur de code.
 
-### Mode de de développement vs Mode de production
+### Mode de développement vs Mode de production
 
 En mode de développement, les source maps sont automatiquement générées pour les fichiers JavaScript et CSS grâce à [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps) et les fichiers source sont surveillés par Browsersync.
 
-En mode de production, les media queries redondantes sont mergées grâce à [CSS MQPacker](https://www.npmjs.com/package/css-mqpacker), le fichier CSS est minifié grâce à [cssnano](https://www.npmjs.com/package/cssnano), les fichiers JS sont obscurcis et minifiés grâce à [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) et les images sont optimisées grâce à [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin).
+En mode de production, les media queries redondantes sont mergées grâce à [CSS MQPacker](https://www.npmjs.com/package/css-mqpacker), le fichier CSS est minifié grâce à [cssnano](https://www.npmjs.com/package/cssnano) et les fichiers JS sont obscurcis et minifiés grâce à [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).
+
+## Hooks
+
+Chaque projet devant idéalement être versionné, la gestion de certaines optimisations est déléguée à Git grâce aux <em>hooks</em> qui permettent de réaliser des traitements complémentaires à l'exécution de certaines commande.
+Pour en savoir plus sur le sujet, je vous invite à lire l'article suivant : [Git hooks ou la revanche du crochet Git](https://delicious-insights.com/fr/articles/git-hooks/)
+
+L'optimisation des images est donc effectuée à la volée lorsque celles-ci sont prêtes à être ajoutées au dépôt grâce à [imagemin-lint-staged](https://www.npmjs.com/package/imagemin-lint-staged).

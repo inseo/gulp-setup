@@ -12,10 +12,10 @@ module.exports = {
         styles            : true,
         scripts           : true,
         standaloneScripts : true,
-        images            : true,
         svgIcons          : true,
         svgSprite         : true,
-        fonts             : true,
+        images            : true,
+        fonts             : true
     },
     paths: {
         build      : buildPath,
