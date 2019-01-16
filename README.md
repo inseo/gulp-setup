@@ -38,6 +38,8 @@ Elles sont au nombre de 8 et sont utilisables dans le terminal via l'instruction
 La commande `npm run watch-styleguide` marche de concert avec la commande `npm run dev-with-styleguide`. Elle doit être exécutée dans un onglet distinct du terminal car `npm run dev` ne rend pas la main sans avoir été stoppée.
 Pour stopper une commande en cours d'exécution, utilisez les touches <kbd>Ctrl</kbd>+<kbd>C</kbd>.
 
+La configuration du styleguide se fait dans le fichier dédié : `kss-config.json`
+
 Le linting des fichiers n'est volontairement pas inclus dans le workflow Gulp pour éviter de ralonger inutilement le temps de traitement. Le plus simple est d'activer le linting lors de l'enregistrement des fichiers dans votre éditeur de code.
 
 ### Mode de développement vs Mode de production

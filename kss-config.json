@@ -1,0 +1,16 @@
+
+{
+  "title": "KSS Styleguide",
+  "source": [
+    "assets/styles/"
+  ],
+  "destination": "build/styleguide/",
+  "builder": "node_modules/kss-scheibo/kss_styleguide/scheibo-template/",
+  "css": [
+    "css/styles.min.css"
+  ],
+  "js" : [
+    "js/scripts.min.js"
+  ],
+  "custom" : ["Colors"]
+}
