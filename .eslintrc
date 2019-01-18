@@ -1,0 +1,34 @@
+{
+  "extends": "eslint:recommended",
+  "globals": {
+    "document": true,
+    "window": true,
+    "MutationObserver": true,
+    "fetch": true,
+    "FormData": true
+  },
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "no-unused-expressions": [2, { "allowTernary": true }],
+    "no-multiple-empty-lines": [1, { "max": 1 }],
+    "max-len": [1, { "code": 120 }],
+    "no-shadow": [1],
+    "func-names": [0],
+    "linebreak-style": [0],
+    "object-curly-newline": [0],
+    "no-new": 0,
+    "one-var": [2, "consecutive"],
+    "radix": [2, "as-needed"],
+    "no-loop-func": [1]
+  }
+}
