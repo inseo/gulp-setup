@@ -51,8 +51,9 @@ En mode de production, les media queries redondantes sont mergées grâce à [CS
 Chaque projet devant idéalement être versionné, la gestion de certaines optimisations est déléguée à Git grâce aux <em>hooks</em> qui permettent de réaliser des traitements complémentaires à l'exécution de certaines commandes.
 Pour en savoir plus sur le sujet, je vous invite à lire l'article suivant : [Git hooks ou la revanche du crochet Git](https://delicious-insights.com/fr/articles/git-hooks/)
 
-L'optimisation des images est donc effectuée à la volée lorsque celles-ci sont prêtes à être ajoutées au dépôt grâce à [imagemin-lint-staged](https://www.npmjs.com/package/imagemin-lint-staged). Il en va de même pour les fichiers Sass et JavaScript dont la syntaxe est vérifiée à la volée grâce à [eslint](https://eslint.org/) et [stylelint](https://stylelint.io/).
+L'optimisation des images est donc effectuée à la volée lorsque celles-ci sont prêtes à être ajoutées au dépôt grâce à [imagemin-lint-staged](https://www.npmjs.com/package/imagemin-lint-staged).
+Il en va de même pour les fichiers Sass et JavaScript dont la syntaxe est vérifiée à la volée grâce à [eslint](https://eslint.org/) et [stylelint](https://stylelint.io/). Les règles syntaxiques de ces deux outils sont définies dans les fichiers `.eslintrc` et `.stylelintrc`.
 
 L'utilisation de [lint-staged](https://www.npmjs.com/package/lint-staged) permet de faire en sorte que l'optimisation et le linting soit fait uniquement sur les fichiers qui ont été indexés (via la commande `git add`).
 
-
+[![asciicast](https://asciinema.org/a/222268.png)](https://asciinema.org/a/222268)
