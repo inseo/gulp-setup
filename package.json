@@ -23,9 +23,18 @@
     }
   },
   "lint-staged": {
-    "*.{png,jpeg,jpg,gif,svg}": ["imagemin-lint-staged", "git add"],
-    "*.scss": ["stylelint", "git add"],
-    "*.js": ["eslint", "git add"]
+    "*.{png,jpeg,jpg,gif,svg}": [
+      "imagemin-lint-staged",
+      "git add"
+    ],
+    "*.scss": [
+      "stylelint",
+      "git add"
+    ],
+    "*.js": [
+      "eslint",
+      "git add"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
