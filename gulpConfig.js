@@ -25,7 +25,7 @@ module.exports = {
         src        : srcPath        + '/styles/**/*.+(sass|scss)',
         build      : buildPath      + '/css',
         styleguide : styleguidePath + '/css',
-        suffix     : '.min'
+        filename   : 'styles.min.css'
     },
     scripts: {
         src: {

@@ -65,7 +65,7 @@ function styles(done) {
     .pipe(sass())
     .on('error', swallowError)
     .pipe(isProduction ? postcss(plugins) : postcss([autoprefixer({ browsers: config.compatibility })]))
-    .pipe(rename({ suffix: config.styles.suffix }))
+    .pipe(rename(config.styles.filename))
     .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
     .pipe(gulp.dest(config.styles.build))
     .pipe(generateStyleGuide ? gulp.dest(config.styles.styleguide) : util.noop())
