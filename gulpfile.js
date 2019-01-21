@@ -64,7 +64,7 @@ function styles(done) {
     .pipe(isProduction ? util.noop() : sourcemaps.init())
     .pipe(sass())
     .on('error', swallowError)
-    .pipe(isProduction ? postcss(plugins) : postcss(autoprefixer({ browsers: config.compatibility })))
+    .pipe(isProduction ? postcss(plugins) : postcss([autoprefixer({ browsers: config.compatibility })]))
     .pipe(rename({ suffix: config.styles.suffix }))
     .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
     .pipe(gulp.dest(config.styles.build))
@@ -176,7 +176,7 @@ function swallowError (error) {
 // ----------------------------------- //
 
 var run  = gulp.parallel(styles, scripts, standalones, images, icons, sprite, fonts),
-    dev  = gulp.series(cleanup, run, watch);
+    dev  = gulp.series(cleanup, run, watch),
     prod = gulp.series(cleanup, run);
 
 isProduction ? gulp.task('default', prod) : gulp.task('default', dev );
