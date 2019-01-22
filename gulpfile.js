@@ -5,13 +5,14 @@
 const config       = require('./gulpConfig');
 
 // General
-const beep         = require('beepbeep'),
+const argv         = require('minimist')(process.argv.slice(2)),
+      beep         = require('beepbeep'),
       browserSync  = require('browser-sync'),
       del          = require('del'),
       gulp         = require('gulp'),
+      noop         = require("gulp-noop"),
       rename       = require('gulp-rename'),
-      sourcemaps   = require('gulp-sourcemaps'),
-      util         = require('gulp-util');
+      sourcemaps   = require('gulp-sourcemaps');
 
 // Styles
 const autoprefixer = config.settings.styles ? require('autoprefixer') : null,
@@ -36,11 +37,11 @@ const svgSprite    = (config.settings.svgIcons | config.settings.svgSprite) ? re
 var isProduction       = false,
     generateStyleGuide = false;
 
-if(util.env.prod === true) {
+if(argv.prod === true) {
   isProduction   = true;
 }
 
-if(util.env.styleguide === true) {
+if(argv.styleguide === true) {
   generateStyleGuide   = true;
 }
 
@@ -61,14 +62,14 @@ function styles(done) {
   ];
 
   return gulp.src(config.styles.src)
-    .pipe(isProduction ? util.noop() : sourcemaps.init())
+    .pipe(isProduction ? noop() : sourcemaps.init())
     .pipe(sass())
     .on('error', swallowError)
     .pipe(isProduction ? postcss(plugins) : postcss([autoprefixer({ browsers: config.compatibility })]))
     .pipe(rename(config.styles.filename))
-    .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
+    .pipe(isProduction ? noop() : sourcemaps.write('.'))
     .pipe(gulp.dest(config.styles.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.styles.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.styles.styleguide) : noop())
 }
 
 
@@ -77,24 +78,24 @@ function scripts(done) {
   if (!config.settings.scripts) return done();
 
   return gulp.src(config.scripts.src.concat)
-    .pipe(isProduction ? util.noop() : sourcemaps.init())
+    .pipe(isProduction ? noop() : sourcemaps.init())
     .pipe(concat(config.scripts.filename))
     .on('error', swallowError)
-    .pipe(isProduction ? uglify() : util.noop())
+    .pipe(isProduction ? uglify() : noop())
     .pipe(rename({ suffix: config.scripts.suffix }))
-    .pipe(isProduction ? util.noop() : sourcemaps.write('.'))
+    .pipe(isProduction ? noop() : sourcemaps.write('.'))
     .pipe(gulp.dest(config.scripts.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.scripts.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.scripts.styleguide) : noop())
 }
 
 function standalones(done) {
   if (!config.settings.standaloneScripts) return done();
 
   return gulp.src(config.scripts.src.standalones)
-    .pipe(isProduction ? uglify() : util.noop())
+    .pipe(isProduction ? uglify() : noop())
     .pipe(rename({ suffix: config.scripts.suffix }))
     .pipe(gulp.dest(config.scripts.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.scripts.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.scripts.styleguide) : noop())
 }
 
 
@@ -104,7 +105,7 @@ function images(done) {
 
   return gulp.src(config.images.src)
     .pipe(gulp.dest(config.images.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.images.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.images.styleguide) : noop())
 }
 
 
@@ -115,7 +116,7 @@ function icons(done) {
   return gulp.src(config.svg.icons.src)
     .pipe(svgSprite({ svg: config.svg.parameters, mode: config.svg.icons.mode }))
     .pipe(gulp.dest(config.svg.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.svg.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.svg.styleguide) : noop())
 }
 
 function sprite(done) {
@@ -124,7 +125,7 @@ function sprite(done) {
   return gulp.src(config.svg.sprite.src)
     .pipe(svgSprite({ svg: config.svg.parameters, mode: config.svg.sprite.mode }))
     .pipe(gulp.dest(config.svg.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.svg.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.svg.styleguide) : noop())
 }
 
 
@@ -134,7 +135,7 @@ function fonts(done) {
 
   return gulp.src(config.fonts.src)
     .pipe(gulp.dest(config.fonts.build))
-    .pipe(generateStyleGuide ? gulp.dest(config.fonts.styleguide) : util.noop())
+    .pipe(generateStyleGuide ? gulp.dest(config.fonts.styleguide) : noop())
 }
 
 
