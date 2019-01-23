@@ -7,8 +7,6 @@
         "stylelint-config-rational-order",
         "stylelint-config-sass-guidelines"
     ],
-    "defaultSeverity": "warning",
-
     "rules": {
         "at-rule-blacklist": ["debug"],
         "at-rule-no-vendor-prefix": true,
@@ -25,6 +23,7 @@
         "declaration-block-trailing-semicolon": "always",
         "declaration-colon-space-after": "always-single-line",
         "declaration-colon-space-before": "never",
+        "declaration-no-important" : true,
         "declaration-property-value-blacklist": {
             "border": ["none"],
             "border-top": ["none"],
