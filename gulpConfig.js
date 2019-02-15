@@ -80,11 +80,6 @@ module.exports = {
             dimensionAttributes : false
         }
     },
-    compatibility: [
-        'last 3 version',
-        'Safari 8',
-        'not ie 9'
-    ],
     browserSync: {
         server: {
             baseDir : styleguidePath

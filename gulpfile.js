@@ -56,7 +56,7 @@ function styles(done) {
   if (!config.settings.styles) return done();
 
   var plugins = [
-    autoprefixer({ browsers: config.compatibility }),
+    autoprefixer(),
     combineMQ(),
     cssnano()
   ];
@@ -65,7 +65,7 @@ function styles(done) {
     .pipe(isProduction ? noop() : sourcemaps.init())
     .pipe(sass())
     .on('error', swallowError)
-    .pipe(isProduction ? postcss(plugins) : postcss([autoprefixer({ browsers: config.compatibility })]))
+    .pipe(isProduction ? postcss(plugins) : postcss([autoprefixer()]))
     .pipe(rename(config.styles.filename))
     .pipe(isProduction ? noop() : sourcemaps.write('.'))
     .pipe(gulp.dest(config.styles.build))
