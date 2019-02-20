@@ -1,12 +1,12 @@
 {
-  "title": "KSS Styleguide",
+  "title": "Styleguide",
   "mask": "*.scss",
-  "placeholder" : "[modifier]",
 
   "//": "Relative to this file",
     "source": "assets/styles/",
     "destination": "build/styleguide/",
-    "builder": "node_modules/michelangelo/kss_styleguide/custom-template/",
+    "builder":     "node_modules/kss-scheibo/kss_styleguide/scheibo-template/",
+    "custom":      ["Colors", "Wrapper", "RequireJS", "BodyClass"],
 
   "//": "Relative to the generated style guide",
     "css": [
